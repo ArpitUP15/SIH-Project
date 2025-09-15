@@ -1,17 +1,38 @@
-import React from 'react'
-import Navbar from "./components/Navbar"
-import HeroSection from "./components/HeroSection"
-import Whyus from "./components/Whyus"
-import HowItWorks from "./components/HowItWorks"
-const App = () => {
-  return (
-    <div className="bg-gradient-to-b from-orange-500 via-bg-[#FFAE66] to-orange-300">
-      <Navbar />
-      <HeroSection />
-      <Whyus />
-      <HowItWorks />
-    </div>
-  );
-}
+import React from "react";
+import { useRef } from "react";
+import Login from "./components/Login"
+import SignupComponent from "./components/Signup"
+import {Routes, Route} from "react-router-dom"
+import HeroSectionLayout from "./components/HeroSectionLayout"
 
-export default App
+const App = () => {
+
+ const homeRef = useRef(null);
+ const featureRef = useRef(null);
+ const testimonialRef = useRef(null);
+ const howItWorksRef = useRef(null);
+ const contactRef = useRef(null);
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <HeroSectionLayout
+            homeRef={homeRef}
+            featureRef={featureRef}
+            testimonialRef={testimonialRef}
+            howItWorksRef={howItWorksRef}
+            contactRef={contactRef}
+          />
+        }
+      ></Route>
+      <Route path="/authenticate/login" element={<Login></Login>}></Route>
+      <Route
+        path="/authenticate/signup"
+        element={<SignupComponent></SignupComponent>}
+      ></Route>
+    </Routes>
+  );
+};
+
+export default App;

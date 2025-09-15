@@ -18,7 +18,11 @@ const HeroSection = () => {
         </p>
 
         <div className="mt-[5rem] mx-auto flex items-center justify-center">
-          <Button variant="sih" size="default" className="px-3">
+          <Button
+            variant="sih"
+            size="default"
+            className="active:scale-[0.9] px-3 transition-all duration-100"
+          >
             Get Started with MindSet
           </Button>
         </div>
