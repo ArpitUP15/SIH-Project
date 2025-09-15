@@ -1,6 +1,6 @@
 # SIH-Project
 
-# 🧠 MindEase – AI-powered Mental Health Assistance  
+# 🧠 MindEase – Focus on Unlocking Potential  
     MindEase is a Digital Mental Health and Psychological Support System for Students in Higher Education
 
 ---
@@ -48,6 +48,6 @@ Muskan Arora – Resource Hub
 
 Manish Pal – Database & Booking System
 
-Hardik – AI chatbot
+Hardik Tyagi – AI chatbot
 
-Parth Mavi - ___
+Parth Mavi - Admin Dashboard 
