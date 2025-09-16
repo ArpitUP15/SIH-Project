@@ -7,24 +7,24 @@ const Whyus = () => {
 
     const dataJson = [
       {
-        icon: <LuBrain className="text-[#2589FB] mx-auto text-3xl" />,
+        icon: <LuBrain className="text-[#2589FB] mx-auto text-4xl" />,
         heading: "Personalised Support",
         detail:
           "receive tailored guidance and resources designed to meet your unique mental health needs and academic challenges",
       },
       {
-        icon: <BsPeople className="text-[#2589FB] mx-auto text-3xl" />,
+        icon: <BsPeople className="text-[#2589FB] mx-auto text-4xl" />,
         heading: "Supportive Community",
         detail:
           "Connect with peers in a safe understanding environment, fostering a sense of belonging and shared growth",
       },
       {
         icon: (
-          <RiSecurePaymentLine className="text-[#2589FB] mx-auto text-3xl" />
+          <RiSecurePaymentLine className="text-[#2589FB] mx-auto text-4xl" />
         ),
         heading: "Confidential Booking System",
         detail:
-          "Schedule private and secure appointments with on-campus counselors ensuring you well being journey is supported with utmost discretion",
+          "Schedule private appointments with on-campus counselors ensuring your journey is supported with discretion",
       },
     ];
 

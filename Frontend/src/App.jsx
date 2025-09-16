@@ -4,6 +4,9 @@ import Login from "./components/Login"
 import SignupComponent from "./components/Signup"
 import {Routes, Route} from "react-router-dom"
 import HeroSectionLayout from "./components/HeroSectionLayout"
+import ResourceHub from "./components/ResourceHub"
+import Booking from "./components/Booking";
+import PeerToPeer from "./components/PeerToPeer";
 
 const App = () => {
 
@@ -31,6 +34,9 @@ const App = () => {
         path="/authenticate/signup"
         element={<SignupComponent></SignupComponent>}
       ></Route>
+      <Route path="/resourcehub" element={<ResourceHub />}></Route>
+      <Route path="/Booking" element={<Booking />}></Route>
+      <Route path="/PeerToPeer" element={<PeerToPeer />}></Route>
     </Routes>
   );
 };

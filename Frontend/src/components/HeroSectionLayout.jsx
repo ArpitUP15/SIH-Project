@@ -24,23 +24,25 @@ const HeroSectionLayout = ({
           howItWorksRef={howItWorksRef}
           contactRef={contactRef}
         />
-        <div className="px-20">
+        <div className="px-2">
           <div ref={homeRef}>
             <HeroSection />
           </div>
-          <Whyus />
-          <div ref={howItWorksRef}>
-            <HowItWorks />
+          <div className="px-20">
+            <Whyus />
+            <div ref={howItWorksRef}>
+              <HowItWorks />
+            </div>
+            <div ref={featureRef}>
+              <Features />
+            </div>
+            <div ref={testimonialRef}>
+              <Reviews />
+            </div>
+            <FinalCtaPage />
           </div>
-          <div ref={featureRef}>
-            <Features />
-          </div>
-          <div ref={testimonialRef}>
-            <Reviews />
-          </div>
-          <FinalCtaPage />
+          <Footer />
         </div>
-        <Footer />
       </div>
     </div>
   );

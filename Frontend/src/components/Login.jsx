@@ -9,9 +9,9 @@ const LoginComponent = () => {
     console.log("Login attempted with:", { email, password });
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in clicked");
-  };
+  // const handleGoogleSignIn = () => {
+  //   console.log("Google sign in clicked");
+  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
