@@ -1,0 +1,2 @@
+web: gunicorn mindease.wsgi:application --chdir mindease
+
