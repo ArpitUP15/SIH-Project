@@ -4,7 +4,7 @@ import e from "../assets/images/e.png"
 const HeroSection = () => {
   return (
     <div className="mt-2">
-      <div className="w-full relative py-5" style={{ backgroundImage: `url(${e})` }}>
+      <div className="w-full relative py-5 bg-no-repeat bg-cover" style={{ backgroundImage: `url(${e})` }}>
         <div className="inset-0 absolute bg-[#fff] opacity-30"></div>
         <div className="max-w-[900px] mx-auto">
           <h1 className="font-bold text-center text-4xl tracking-wide mt-[5rem]">

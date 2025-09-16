@@ -7,6 +7,7 @@ import HeroSectionLayout from "./components/HeroSectionLayout"
 import ResourceHub from "./components/ResourceHub"
 import Booking from "./components/Booking";
 import PeerToPeer from "./components/PeerToPeer";
+import Dashboard from "./components/Dashboard"
 
 const App = () => {
 
@@ -37,6 +38,7 @@ const App = () => {
       <Route path="/resourcehub" element={<ResourceHub />}></Route>
       <Route path="/Booking" element={<Booking />}></Route>
       <Route path="/PeerToPeer" element={<PeerToPeer />}></Route>
+      <Route path="/Dashboard" element={<Dashboard />}></Route>
     </Routes>
   );
 };

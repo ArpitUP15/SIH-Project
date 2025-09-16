@@ -15,7 +15,7 @@ const Navbar = ({
   const navigate = useNavigate();
 
   return (
-    <div className="px-8 py-2 flex items-center">
+    <div className="px-8 py-2 flex items-center bg-orange-500">
       <div className="flex gap-2 basis-[25%] items-center">
         <div>logo</div>
         <div className="text-[#2589FB] font-bold text-xl">MindEase</div>

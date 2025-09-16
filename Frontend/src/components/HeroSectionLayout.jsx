@@ -16,7 +16,7 @@ const HeroSectionLayout = ({
 }) => {
   return (
     <div className="bg-gradient-to-b from-orange-500 via-bg-[#FFAE66] to-orange-300">
-      <div className="bg-gradient-to-b ">
+      <div className="">
         <Navbar
           homeRef={homeRef}
           featureRef={featureRef}
@@ -28,7 +28,7 @@ const HeroSectionLayout = ({
           <div ref={homeRef}>
             <HeroSection />
           </div>
-          <div className="px-20">
+          <div className="">
             <Whyus />
             <div ref={howItWorksRef}>
               <HowItWorks />

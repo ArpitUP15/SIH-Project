@@ -8,6 +8,7 @@ import a from "../assets/images/a.png";
 import b from "../assets/images/b.png";
 import c from "../assets/images/c.png";
 import d from "../assets/images/d.png";
+import f from "../assets/images/f.png";
 
 
 const Features = () => {
@@ -18,7 +19,7 @@ const Features = () => {
         heading: "AI-guided Chatbot Support",
         detail:
           "Interactive chat provides immediate coping stratergies and directs to professional help",
-        img: "",
+        img: f,
       },
       {
         icon: <RiSecurePaymentLine className = "text-blue-500 text-3xl"/>,
@@ -51,7 +52,7 @@ const Features = () => {
     ];
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto bg-white px-20 pb-30 pt-10">
       <h1 className="font-bold text-center text-3xl tracking-wide mt-[5rem]">
         Comprehensive Support, Right at Your Fingertips
       </h1>
@@ -69,7 +70,7 @@ const Features = () => {
               </p>
               <h1 className="font-bold text-xl py-2 pt-4"> {elem.heading}</h1>
               <p className="py-2 text-center text-[12px]">{elem.detail}</p>
-              <img src={elem.img} alt="" className='mx-auto text-center h-30 w-full px-4'/>
+              <img src={elem.img} alt="" className='mx-auto text-center h-35 w-full px-4'/>
             </div>
           ))}
         </div>

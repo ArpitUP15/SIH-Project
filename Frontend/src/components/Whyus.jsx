@@ -29,7 +29,7 @@ const Whyus = () => {
     ];
 
   return (
-    <div className="">
+    <div className=" px-20 py-10 mt-10">
       <h1 className="font-bold text-center text-3xl tracking-wide mt-[5rem]">
         Why Choose MindEase?
       </h1>

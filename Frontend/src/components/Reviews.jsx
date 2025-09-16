@@ -1,4 +1,6 @@
-import React from 'react'
+import person1 from "../assets/images/person1.png";
+import person2 from "../assets/images/person2.png";
+import person3 from "../assets/images/person3.png";
 
 const Reviews = () => {
 
@@ -7,7 +9,7 @@ const Reviews = () => {
         icon: "⭐⭐⭐⭐⭐",
         detail:
           "“MindSet has been an invaluable resource during my toughest academic periods. The personalized support and community made all the difference.”",
-        img: "",
+        img: person1,
         name: "Sarah J.",
         place: "University Student, Psychology",
       },
@@ -15,7 +17,7 @@ const Reviews = () => {
         icon: "⭐⭐⭐⭐⭐",
         detail:
           "“I highly recommend MindSet for any student needing mental health resources. The booking system is confidential, and the peer support is amazing.”",
-        img: "",
+        img: person2,
         name: "Michael P.",
         place: "Graduate Student, Engineering",
       },
@@ -23,14 +25,14 @@ const Reviews = () => {
         icon: "⭐⭐⭐⭐⭐",
         detail:
           "“As a mental health professional, I'm impressed by MindSet's comprehensive approach. It's a crucial platform for student well-being.”",
-        img: "",
+        img: person3,
         name: "Dr. Anya Sharma",
         place: "Licensed Psychologist",
       },
     ];
 
   return (
-    <div>
+    <div className="bg-white px-20 pb-30 pt-10">
       <h1 className="font-bold text-center text-3xl tracking-wide mt-[5rem]">
         What Our Students Say
       </h1>

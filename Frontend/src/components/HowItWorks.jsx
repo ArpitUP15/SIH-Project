@@ -25,7 +25,7 @@ const HowItWorks = () => {
     
 
  return (
-   <div className="mt-[10rem]">
+   <div className="mt-[10rem] px-20 pb-30 pt-10 bg-slate-100">
      <h1 className="font-bold text-center text-3xl tracking-wide mt-[5rem]">
        How MindEase Works
      </h1>
