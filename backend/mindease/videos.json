@@ -1,0 +1,82 @@
+[
+    {
+      "title": "What Is Mental Health And How Can I Improve It? | headspace",
+      "link": "https://www.youtube.com/watch?v=gtUGVzEUy5A",
+      "thumbnail": "https://img.youtube.com/vi/gtUGVzEUy5A/0.jpg",
+      "description": "Learn what mental health really means and discover simple ways to improve your well-being every day",
+      "duration": "04:07",
+      "tags": ["mental health", "self care", "mindfulness", "healthy mind"]
+    },
+    {
+      "title": "De-stress in 5 Minutes: A Free Mind and Body Meditation with Elisha Mudly",
+      "link": "https://www.youtube.com/watch?v=wE292vsJcBY",
+      "thumbnail": "https://img.youtube.com/vi/wE292vsJcBY/0.jpg",
+      "description": "Relax your mind and body in just 5 minutes with this guided meditation by Elisha Mudly",
+      "duration": "04:52",
+      "tags": ["meditation", "stress relief", "mental wellness", "relaxation techniques"]
+    },
+    {
+      "title": "Atomic Habits for Mental Health",
+      "link": "https://www.youtube.com/watch?v=AOHT-YiOeQA",
+      "thumbnail": "https://img.youtube.com/vi/AOHT-YiOeQA/0.jpg",
+      "description": "Discover how small daily habits can transform your mental health",
+      "duration": "14:19",
+      "tags": ["mental health", "productivity", "mental wellness", "emotional well being"]
+    },
+    {
+      "title": "6 Therapy Skills to Stop Overthinking Everything",
+      "link": "https://www.youtube.com/watch?v=tK2LaefZcy8",
+      "thumbnail": "https://img.youtube.com/vi/tK2LaefZcy8/0.jpg",
+      "description": "Simple techniques to reduce stress and think clearly",
+      "duration": "15:40",
+      "tags": ["mental health", "stop overthinking", "mental wellness", "anxiety relief"]
+    },
+    {
+        "title": "REWIRE YOUR BRAIN - Neuroscientist Explains How To Control Your Mind in MINUTES!",
+        "link": "https://www.youtube.com/watch?v=_W_wPVRpqTs",
+        "thumbnail": "https://img.youtube.com/vi/_W_wPVRpqTs/0.jpg",
+        "description": "Learn to rewire your brain and take control of your thoughts in minutes with insights from a neurologist",
+        "duration": "10:08",
+        "tags": ["neuroscience", "focus and clarity", "productivity", "healthy mind"]
+      },
+      {
+        "title": "Feel More Optimistic ( Ten Minute Guided Meditation ) Positive Thinking",
+        "link": "https://www.youtube.com/watch?v=SuuX7YKnfuc",
+        "thumbnail": "https://img.youtube.com/vi/SuuX7YKnfuc/0.jpg",
+        "description": "Boost your positivity with this 10-minute guided meditation, cultivate optimism",
+        "duration": "10:15",
+        "tags": ["guided meditation", "optimism", "mental wellness", "calm mind"]
+      },
+      {
+        "title": "How to Stop Taking Things Personally",
+        "link": "https://www.youtube.com/watch?v=BI4dBryghRk",
+        "thumbnail": "https://img.youtube.com/vi/BI4dBryghRk/0.jpg",
+        "description": "Learn practical strategies to stop taking things personally, protect your emotions and respond with confidence",
+        "duration": "18:52",
+        "tags": ["emotional intelligence", "personal growth", "confidence", "emotional well being"]
+      },
+      {
+        "title": "How to Stop Comparing Yourself to Others",
+        "link": "https://www.youtube.com/watch?v=1f9IE3CkB4s",
+        "thumbnail": "https://img.youtube.com/vi/1f9IE3CkB4s/0.jpg",
+        "description": "Build confidence, self-love, and a healthier mindset",
+        "duration": "16:30",
+        "tags": ["mental health", "self-improvement", "motivation", "emotional wellbeing "]
+      },
+      {
+        "title": "The Key To Dealing With Social Anxiety",
+        "link": "https://www.youtube.com/watch?v=XIrQKo-d7h4",
+        "thumbnail": "https://img.youtube.com/vi/XIrQKo-d7h4/0.jpg",
+        "description": "Learn tips to stay calm and connect with others",
+        "duration": "05:30",
+        "tags": ["overcoming anxiety", "social skills", "productivity", "confidence building"]
+      },
+      {
+        "title": "Keep going! Your failures don't define you! by Gaur Gopal Das",
+        "link": "https://www.youtube.com/watch?v=4e0-dQEmJDY",
+        "thumbnail": "https://img.youtube.com/vi/4e0-dQEmJDY/0.jpg",
+        "description": "Stay motivated your failures don't define who you are",
+        "duration": "05:34",
+        "tags": ["motivation", "optimism", "mental wellness", "life lessons"]
+      }
+]
