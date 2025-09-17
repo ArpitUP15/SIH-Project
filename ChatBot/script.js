@@ -1,7 +1,7 @@
 const chatBody=document.querySelector(".chat-body");
 const messageInput=document.querySelector(".message-input");
 const sendMessageButton=document.querySelector("#send");
-const API_KEY=  "AIzaSyDGBp_hmq_mx2OHxdc7b3VTB7iTBK2-VSE";
+const API_KEY=  "";
 const fileInput=document.querySelector("#file-input");
 const fileUploadWrap=document.querySelector(".file-upload-wrap");
 const fileCancel=document.querySelector("#cancel-file");
@@ -226,4 +226,5 @@ fileCancel.addEventListener("click",()=>{
 document.querySelector("#file-upload").addEventListener("click",()=>fileInput.click())
 
  sendMessageButton.addEventListener("click",(e)=>handleOutgoingMessage(e))
+
  chatbotToggler.addEventListener("click",()=>document.body.classList.toggle("show-chatbot"));
