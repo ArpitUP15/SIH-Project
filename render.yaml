@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     rootDir: backend
-    buildCommand: "pip install -r requirements.txt && python mindease/manage.py migrate --noinput && python mindease/manage.py collectstatic --noinput"
+    buildCommand: "pip install -r requirements.txt && python mindease/manage.py migrate --noinput && python mindease/manage.py collectstatic --noinput && python mindease/manage.py createsuperuser --noinput || true"
     startCommand: "gunicorn mindease.wsgi:application --chdir mindease"
     envVars:
       - key: SECRET_KEY
