@@ -15,6 +15,10 @@ from .serializers import (
     StudentAnalyticsSerializer, UpcomingSessionSerializer
 )
 from .permissions import IsCounselor, IsStudent, IsStudentOrCounselor
+import os
+import json
+from urllib import request as urlrequest
+from urllib import parse as urlparse
 
 
 # Authentication Views
@@ -31,6 +35,50 @@ def register_view(request):
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny])
+def email_login_view(request):
+    """Login with email and password, returning OAuth2 tokens."""
+    email = request.data.get('email')
+    password = request.data.get('password')
+    if not email or not password:
+        return Response({'error': 'email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        user = User.objects.get(email__iexact=email)
+    except User.DoesNotExist:
+        return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not user.is_active:
+        return Response({'error': 'User is inactive'}, status=status.HTTP_403_FORBIDDEN)
+
+    client_id = os.environ.get('OAUTH_CLIENT_ID')
+    client_secret = os.environ.get('OAUTH_CLIENT_SECRET')
+    if not client_id or not client_secret:
+        return Response({'error': 'Server OAuth client not configured', 'details': 'Missing OAUTH_CLIENT_ID / OAUTH_CLIENT_SECRET'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    payload = {
+        'grant_type': 'password',
+        'username': user.username,
+        'password': password,
+        'client_id': client_id,
+        'client_secret': client_secret,
+    }
+
+    token_url = request.build_absolute_uri('/o/token/')
+    data = urlparse.urlencode(payload).encode('utf-8')
+    req = urlrequest.Request(token_url, data=data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
+    try:
+        with urlrequest.urlopen(req) as resp:
+            resp_body = resp.read().decode('utf-8')
+            try:
+                json_body = json.loads(resp_body)
+            except json.JSONDecodeError:
+                json_body = {'raw': resp_body}
+            return Response(json_body, status=resp.getcode())
+    except Exception as ex:
+        return Response({'error': 'Login failed', 'details': str(ex)}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
