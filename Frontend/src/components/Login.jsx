@@ -1,17 +1,64 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import axios from "axios"
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [role, setRole] = useState("norole");
+    const [isCounselor, setIsCounselor] = useState(role === "Student" ? false : true);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login attempted with:", { email, password });
+
+    const HandleSigninApiCall = async () => {
+      try {
+        console.log(isCounselor);
+
+        const body = {
+          email: email,
+          password: password,
+        };
+
+        console.log("Sending data to the backend", body);
+
+        const res = await axios.post(
+          "https://mindease-backend-2qv5.onrender.com/api/auth/login/",
+          body,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log(res.data);
+        console.log("Login Successful");
+
+        navigate("/");
+      } catch (err) {
+        console.log("An error occurred:", err);
+      }
+    };
+
+    HandleSigninApiCall();
   };
 
-  // const handleGoogleSignIn = () => {
-  //   console.log("Google sign in clicked");
-  // };
+
+  const handleGoogleSignIn = () => {
+    console.log("Google sign in clicked");
+  };
+
+  useEffect(() => {
+    setShowPopup(true);
+  }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -152,6 +199,36 @@ const LoginComponent = () => {
           </a>
         </div>
       </div>
+
+      <Dialog open={showPopup} onOpenChange={setShowPopup}>
+        <DialogContent className="backdrop-blur-sm bg-white/70 border border-gray-200 rounded-lg w-80">
+          <DialogHeader>
+            <DialogTitle>Login As</DialogTitle>
+            <DialogDescription>Choose your role to continue</DialogDescription>
+          </DialogHeader>
+
+          <div className="mt-4 p-4 flex flex-col gap-4">
+            <button
+              className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              onClick={() => {
+                setRole("Student");
+                setShowPopup(false);
+              }}
+            >
+              Student
+            </button>
+            <button
+              className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              onClick={() => {
+                setRole("Admin");
+                setShowPopup(false);
+              }}
+            >
+              Admin
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

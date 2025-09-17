@@ -14,7 +14,7 @@ const HeroSection = () => {
             Your Journey to Well-being Starts Here.
           </h1>
           <p className=" text-center mt-[6rem] px-12">
-            MindSet is dedicated to providing comprehensive mental health
+            MindEase is dedicated to providing comprehensive mental health
             support for higher education students. Discover personalized
             resources, connect with a supportive community, and build resilience
             for academic success and personal growth.

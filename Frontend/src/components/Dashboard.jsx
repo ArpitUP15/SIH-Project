@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-
+import axios from "axios";
+import { MdOutlineUpcoming } from "react-icons/md";
+import { FaClockRotateLeft } from "react-icons/fa6";
 // *********************************Chart Testing Imports ***********************************//
 
 import { TrendingUp } from "lucide-react";
@@ -123,6 +125,61 @@ const Dashboard = () => {
       color: "var(--chart-1)",
     },
   };
+
+  const [metrixData, setMatrixData] = useState();
+  const [matrixDataFetched, setMatrixDataFetched] = useState(false)
+  const [studentAnalysisData, setStudentAnalysisData] = useState();
+  const [StudentAnalysisDataFetched, setStudentAnalysisDataFetched]= useState(false)
+  let token = "";
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    const fetchMatrixData = async () => {
+      setMatrixDataFetched(true);
+      try {
+        const res = await fetch("http://localhost:8000/api/metrics/matrix", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+        if (!res.ok) throw new Error("Failed to fetch matrix data");
+        const data = await res.json();
+        setMatrixData(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setMatrixDataFetched(false);
+      }
+    };
+
+    const fetchStudentAnalysisData = async () => {
+      setStudentAnalysisDataFetched(true);
+      try {
+        const res = await fetch(
+          "http://localhost:8000/api/metrics/student-analysis",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (!res.ok) throw new Error("Failed to fetch student analysis data");
+        const data = await res.json();
+        setStudentAnalysisData(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setStudentAnalysisDataFetched(false);
+      }
+    };
+
+    fetchMatrixData();
+    fetchStudentAnalysisData();
+  }, []);
+
 
   return (
     <div>
@@ -309,37 +366,65 @@ const Dashboard = () => {
                 <p className="text-xs text-gray-600 pb-4">
                   Overview of student improvement after counseling.
                 </p>
-                <Table>
-                  <TableCaption>A list of your recent invoices.</TableCaption>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[100px]">Invoice</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Method</TableHead>
-                      <TableHead className="text-right">Amount</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {data.map((data) => (
-                      <TableRow key={data.invoice}>
-                        <TableCell className="font-medium">
-                          {data.invoice}
-                        </TableCell>
-                        <TableCell>{data.paymentStatus}</TableCell>
-                        <TableCell>{data.paymentMethod}</TableCell>
-                        <TableCell className="text-right">
-                          {data.totalAmount}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                  <TableFooter>
-                    <TableRow>
-                      <TableCell colSpan={3}>Total</TableCell>
-                      <TableCell className="text-right">$2,500.00</TableCell>
-                    </TableRow>
-                  </TableFooter>
-                </Table>
+                <div className="flex gap-4">
+                  <div>
+                    <Table>
+                      <TableCaption>
+                        A list of your recent invoices.
+                      </TableCaption>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-[100px]">Invoice</TableHead>
+                          <TableHead>Status</TableHead>
+                          <TableHead>Method</TableHead>
+                          <TableHead className="text-right">Amount</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {data.map((data) => (
+                          <TableRow key={data.invoice}>
+                            <TableCell className="font-medium">
+                              {data.invoice}
+                            </TableCell>
+                            <TableCell>{data.paymentStatus}</TableCell>
+                            <TableCell>{data.paymentMethod}</TableCell>
+                            <TableCell className="text-right">
+                              {data.totalAmount}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                      <TableFooter>
+                        <TableRow>
+                          <TableCell colSpan={3}>Total</TableCell>
+                          <TableCell className="text-right">
+                            $2,500.00
+                          </TableCell>
+                        </TableRow>
+                      </TableFooter>
+                    </Table>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-center">
+                      <div>
+                        <MdOutlineUpcoming className="text-3xl text-cyan-500" />{" "}
+                      </div>
+                      <div className="font-bold text-lg text-center">
+                        Upcoming Sessions
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 px-16">
+                      {/* map logic of the data */}
+                      <div>
+                        <FaClockRotateLeft className="text-xl text-cyan-500" />
+                      </div>
+                      <div className="flex-col text-sm">
+                        <p>Frank Green</p>
+                        <p className="text-xs">10:00 AM with Sarah Lee</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

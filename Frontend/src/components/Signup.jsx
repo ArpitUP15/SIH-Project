@@ -1,24 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { MdDriveFileRenameOutline } from "react-icons/md";
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const SignupComponent = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [role, setRole] = useState("Student");
+  const [isCounselor, setIsCounselor] = useState(role === "Student" ? false : true);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
-    console.log("Login attempted with:", { email, password });
+
+    const HandleSignUpApiCall = async () => {
+      console.log(isCounselor);
+      const body = {
+        username: name,
+        email: email,
+        first_name: "",
+        last_name: "",
+        password: password,
+        password_confirm: confirmPassword,
+        is_counselor: isCounselor,
+      };
+
+      console.log("Sending data to the backend", body)
+      await axios.post("https://mindease-backend-2qv5.onrender.com/api/auth/register/", {
+        "username": name,
+        "email": email,
+        "first_name":"",
+        "last_name": "",
+        "password": password,
+        "password_confirm": confirmPassword,
+        "is_counselor": isCounselor
+      })
+      .then((res) => {
+        console.log(res);
+        navigate("/authenticate/login");
+        console.log("signin Successfull")
+      })
+      .catch((err) => {
+        console.log("an error occured", err);
+      });
+    }
+
+    HandleSignUpApiCall();
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignup = () => {
     console.log("Google sign in clicked");
   };
+
+  useEffect(() => {
+    setShowPopup(true);
+  }, []);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
       <div className="w-full max-w-sm bg-white rounded-lg border-2 p-4">
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
           <div className="text-center mb-8">
             <div className="flex items-center justify-center">
               <div className="text-pink-500 text-2xl mr-2">logo</div>
@@ -125,6 +176,41 @@ const SignupComponent = () => {
               </div>
             </div>
 
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-[12px] font-medium text-gray-700 mb-1"
+              >
+                confirm Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  required
+                  className="w-full pl-10 text-sm pr-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
             <button
               type="submit"
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-4 rounded-md transition duration-200 flex items-center justify-center"
@@ -155,7 +241,7 @@ const SignupComponent = () => {
 
         <div className="space-y-3">
           <button
-            onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignup}
             className="w-full bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-medium py-1 px-4 rounded-md transition duration-200 flex items-center justify-center"
           >
             Sign up with Google
@@ -163,15 +249,47 @@ const SignupComponent = () => {
         </div>
 
         <div className="text-center mt-4">
-          <span className="text-gray-600 text-sm">already have an account? </span>
+          <span className="text-gray-600 text-sm">
+            already have an account?{" "}
+          </span>
           <a
             href="/authenticate/login"
             className="text-blue-500 hover:text-blue-600 text-sm font-medium"
           >
-           Login
+            Login
           </a>
         </div>
       </div>
+
+      <Dialog open={showPopup} onOpenChange={setShowPopup}>
+        <DialogContent className="backdrop-blur-sm bg-white/70 border border-gray-200 rounded-lg w-80">
+          <DialogHeader>
+            <DialogTitle>Login As</DialogTitle>
+            <DialogDescription>Choose your role to continue</DialogDescription>
+          </DialogHeader>
+
+          <div className="mt-4 p-4 flex flex-col gap-4">
+            <button
+              className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+              onClick={() => {
+                setRole("Student");
+                setShowPopup(false);
+              }}
+            >
+              Student
+            </button>
+            <button
+              className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+              onClick={() => {
+                setRole("Admin");
+                setShowPopup(false);
+              }}
+            >
+              Admin
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
