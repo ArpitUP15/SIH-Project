@@ -185,3 +185,5 @@ CORS_ALLOW_ALL_ORIGINS = True  # Only for development
 
 
 AUTH_USER_MODEL = 'core.User'
+OAUTH_CLIENT_ID = env('OAUTH_CLIENT_ID', default=None)
+OAUTH_CLIENT_SECRET = env('OAUTH_CLIENT_SECRET', default=None)
