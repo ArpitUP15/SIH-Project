@@ -19,6 +19,7 @@ import os
 import json
 from urllib import request as urlrequest
 from urllib import parse as urlparse
+from urllib.error import HTTPError, URLError
 
 
 # Authentication Views
@@ -77,8 +78,17 @@ def email_login_view(request):
             except json.JSONDecodeError:
                 json_body = {'raw': resp_body}
             return Response(json_body, status=resp.getcode())
+    except HTTPError as ex:
+        err_body = ex.read().decode('utf-8') if hasattr(ex, 'read') else ''
+        try:
+            json_body = json.loads(err_body) if err_body else {'error': str(ex)}
+        except json.JSONDecodeError:
+            json_body = {'error': str(ex), 'raw': err_body}
+        return Response(json_body, status=ex.code or status.HTTP_400_BAD_REQUEST)
+    except URLError as ex:
+        return Response({'error': 'Token endpoint unreachable', 'details': str(ex.reason)}, status=status.HTTP_502_BAD_GATEWAY)
     except Exception as ex:
-        return Response({'error': 'Login failed', 'details': str(ex)}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'error': 'Login failed', 'details': str(ex)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
