@@ -48,6 +48,8 @@ def email_login_view(request):
 
     try:
         user = User.objects.get(email__iexact=email)
+    except User.MultipleObjectsReturned:
+        user = User.objects.filter(email__iexact=email).order_by('id').first()
     except User.DoesNotExist:
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
 
