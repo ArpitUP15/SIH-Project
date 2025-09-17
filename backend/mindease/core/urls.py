@@ -14,6 +14,7 @@ router.register(r'sessions', views.SessionViewSet, basename='session')
 urlpatterns = [
     # Authentication endpoints
     path('auth/register/', views.register_view, name='register'),
+    path('auth/login/', views.email_login_view, name='email-login'),
     path('auth/profile/', views.user_profile_view, name='user-profile'),
     path('auth/profile/update/', views.update_profile_view, name='update-profile'),
     
